@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace就是接口类-->
+<mapper namespace="com.cheer.forumDemo.dao.CommentMapper">
+    <cache></cache>
+    <insert id="insert">
+        insert into comment values(#{id},#{username},#{tid},#{title},#{content},#{picture},default)
+    </insert>
+    <select id="getComment" resultType="com.cheer.forumDemo.model.Comment">
+        select * from comment where title = #{title} and id = #{id}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from comment where id = #{id}
+    </select>
+    <select id="number" resultType="java.lang.Integer">
+        select count(id) from comment
+    </select>
+    <select id="getUser" resultType="java.lang.String">
+        select username from comment where tid =
+        (select max(c.tid) from blog b join comment c on b.id = c.id where b.id = #{id} )
+        and id = #{id}
+    </select>
+</mapper>

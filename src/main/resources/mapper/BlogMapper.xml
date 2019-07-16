@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace就是接口类-->
+<mapper namespace="com.cheer.forumDemo.dao.BLogMapper">
+    <cache></cache>
+    <insert id="insert">
+        insert into blog values(default,#{user},#{title},#{text},default,#{picture})
+    </insert>
+    <update id="update">
+        update blog set picture=#{picture} where user=#{user}
+    </update>
+    <select id="getList" resultType="com.cheer.forumDemo.model.Blog">
+        select * from blog order by time desc
+    </select>
+    <select id="getBlog" resultType="com.cheer.forumDemo.model.Blog">
+        select * from blog where id=#{id}
+    </select>
+    <select id="number" resultType="java.lang.Integer">
+        select count(id) from blog
+    </select>
+    <select id="getOne" resultType="com.cheer.forumDemo.model.BlogVO">
+        select * from blog where user = #{user}
+    </select>
+</mapper>

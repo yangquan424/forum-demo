@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    body {
+        max-width: 1000px;
+        min-width: 480px;
+        margin: 0 auto;
+    }
+
+    #d1 {
+        text-align: left;
+        display: inline-block;
+    }
+
+    #d2 {
+        position: absolute;
+        right: 175px;
+        text-align: right;
+        display: inline-block;
+    }
+
+    .a1 {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    button {
+        position: relative;
+        width: auto;
+        height: auto;
+        border-radius: 12px;
+        border-width: 0;
+        background-color: #dcddc0;
+    }
+
+    #d3,#d5 {
+        background-color: #dcddc0;
+        width: 680px;
+        height: auto;
+        position: relative;
+        float: left;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .d4 {
+        background-color: #dcddc0;
+        width: 300px;
+        height: auto;
+        float: right;
+        margin-bottom: 20px;
+    }
+
+    #d31 {
+        position: relative;
+        float: left;
+        display: inline-block;
+    }
+
+    #d32 {
+        position: relative;
+        float: left;
+        display: inline-block;
+    }
+
+    .i1 {
+        width: 70px;
+        height: 70px;
+        margin: 10px
+    }
+
+    .d321 {
+        width: 580px;
+        height: 50px;
+        display: table;
+        vertical-align: bottom;
+    }
+    a{
+        text-decoration:none;
+        color: #41414b;
+    }
+    a:hover{
+        color: red;
+    }
+</style>
+<div id="d1" style="border-bottom:10px solid white;">
+    <form action="" method="post">
+        <button type="submit">lookup</button>
+        <input type="text" name="lookup" id="lookup">
+    </form>
+</div>
+<div id="d2">
+    <a href="/index" class="a1">首页</a><a href="/register" class="a1">注册</a><a href="/login" class="a1">登录</a>
+</div>
+<div>
+    <div id="d3">
+        <div id="d31" style="width: 100px;height: 100px">
+            <img th:src="${user.picture}" alt="" class="i1">
+        </div>
+
+        <div id="d32" style="width: 580px;height: 100px">
+            <div class="d321">
+                <h3 th:text="${user.username}" style="margin:0;margin-top:10px"></h3>
+            </div>
+            <div class="d321">
+                <span style="font-size:12px" th:text="第+${user.id}+号会员"></span>	&nbsp;
+                <span style="font-size:12px" th:text="加入于_+${user.time}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="d4">
+        <div style="margin: 5px">
+            <span th:text="${user.username}"></span>
+            <span th:text="最近的时间轴更新"></span>
+        </div>
+    </div>
+    <div id="d5">
+        <span th:text="${user.username}"></span>&nbsp;
+        <span th:text="创建的所有主题"></span>
+        <hr>
+        <div th:each="s:${blogs}" style="margin-bottom: 10px">
+            <a th:href="@{/blog/}+${s.id}" th:text="${s.title}" style="font-weight: bold"></a><br>
+            <span style="font-size:12px">
+                程序员
+                <a th:href="@{/personal/}+${s.user}" th:text="${s.user}"></a>
+                发帖时间
+                <span th:text="${s.lastTime}+前"></span>
+                <a th:text="${delete}" href=""></a>
+                最后回复来自
+                <a th:href="@{/personal/}+${s.username}" th:text="${s.username}"></a>
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

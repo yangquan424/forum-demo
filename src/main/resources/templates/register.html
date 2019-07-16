@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            margin: 0 auto;
+            position: relative;
+            top: 100px;
+            width: 500px;
+            height: 300px;
+            text-align: center;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-right: 100px;
+        }
+        input {
+            width: 250px;
+            height: 30px;
+        }
+        button {
+            top: 20px;
+            position: relative;
+            border-width: 0;
+            width: 150px;
+            height: 40px;
+            background-color: #dcddc0;
+            border-radius: 10px;
+        }
+        input::-webkit-input-placeholder{
+            color: #dcddc0;
+        }
+        h1{
+            margin: 0 auto;
+            position: relative;
+            top: 100px;
+            text-align: center;
+            width: 500px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>程序员论坛账号注册</h1>
+<div id="main">
+    <form action="register" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="cell">
+                <label for="username">UserName</label><input type="text" name="username" id="username" placeholder="请输入用户名">
+            </div>
+            <div class="cell">
+                <label for="password1">Password</label><input type="password" name="password" id="password1" placeholder="请输入密码">
+            </div>
+            <div class="cell">
+                <label for="password2">Confirmation</label><input type="password" name="password2" id="password2" placeholder="请确认密码">
+            </div>
+            <div class="cell">
+                <label for="avatar">Avatar</label><input type="file" name="file" id="avatar" placeholder="请选择头像">
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit">register</button>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<script>
+    $(function () {
+        $("button").click(function (e) {
+            e.preventDefault();
+            if ($("#password1").val() !== $("#password2").val()){
+                alert("两次输入的密码不一致！");
+                return;
+            }
+            // 提交表单
+            $("form").submit();
+        });
+
+        $("#username").change(function () {
+            console.log("username值改变！");
+            $.ajax({
+                url: "a",
+                method: "POST",
+                dataType: "JSON",
+                data: {"username": $("#username").val()},
+                success: function (response) {
+                    if (response.code === "-1") {
+                        $("button").attr("disabled", "disabled");
+                        alert(response.message);
+                    } else {
+                        $("button").removeAttr("disabled");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

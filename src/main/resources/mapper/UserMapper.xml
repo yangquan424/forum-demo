@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace就是接口类-->
+<mapper namespace="com.cheer.forumDemo.dao.UserMapper">
+    <cache></cache>
+    <insert id="register">
+        insert into user values(default,#{username},#{password},#{picture},default)
+    </insert>
+    <select id="getList" resultType="User" useCache="true">
+        select * from user where username = #{username}
+    </select>
+    <select id="number" resultType="java.lang.Integer">
+        select count(id) from user
+    </select>
+</mapper>

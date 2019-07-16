@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    body {
+        max-width: 1000px;
+        min-width: 480px;
+        margin: 0 auto;
+    }
+
+    #d1 {
+        text-align: left;
+        display: inline-block;
+    }
+
+    #d2 {
+        position: absolute;
+        right: 175px;
+        text-align: right;
+        display: inline-block;
+    }
+
+    .a1 {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    button {
+        position: relative;
+        width: auto;
+        height: auto;
+        border-radius: 12px;
+        border-width: 0;
+        background-color: #dcddc0;
+    }
+
+    #d3 {
+        background-color: #dcddc0;
+        width: 680px;
+        height: auto;
+        position: relative;
+        float: left;
+        display: inline-block;
+    }
+    button.bu {
+        position: relative;
+        left: 108px;
+        /*top: 20px;*/
+        width: 80px;
+        height: 30px;
+        border-radius: 12px;
+        border-width: 0;
+        margin-right:88px;
+        color: black;
+        background-color: #dcddc0;
+    }
+    .d4 {
+        background-color: #dcddc0;
+        width: 300px;
+        height: auto;
+        float: right;
+        margin-bottom: 20px;
+    }
+</style>
+<div id="d1" style="border-bottom:10px solid white;">
+    <form action="" method="post">
+        <button type="submit">lookup</button>
+        <input type="text" name="lookup" id="lookup">
+    </form>
+</div>
+<div id="d2">
+    <a href="/index" class="a1">首页</a><a href="/register" class="a1">注册</a><a href="/login" class="a1">登录</a>
+</div>
+<div>
+    <div id="d3">
+        <form action="write" method="post">
+            <div class="row">
+                <label for="title">标题</label><br>
+                <input style="width: 676px;height: 25px" type="text" name="title" id="title" placeholder="请输入主题标题，如果如果标题表达清晰，则内容可以为空">
+            </div>
+            <div>
+                <div class="row">
+                    <label for="content">正文</label><br>
+                    <textarea style="width: 674px;height: 300px" type="text" name="content" id="content"></textarea>
+                </div>
+            </div>
+            <button id="b1" type="submit" class="bu" th:text="发布主题"
+                    style="background-color: #c9ccdd;margin: 5px"></button>
+        </form>
+    </div>
+    <div class="d4">
+        <h>发帖提示</h>
+        <hr>
+        <ol>
+            <li>请在标题中描述内容要点。如果一件事情在标题的长度内就已经可以说清楚，那就没有必要写正文了。</li>
+            <li>可以在正文中为你要发布的主题添加更多细节。V2EX 支持 GitHub Flavored Markdown 文本标记语法。
+                在正式提交之前，你可以点击本页面左下角的“预览主题”来查看 Markdown 正文的实际渲染效果。</li>
+        </ol>
+    </div>
+    <div class="d4">
+        <h>社区指导原则</h>
+        <hr>
+        <ol>
+            <li>请不要在 V2EX 发布任何盗版下载链接，包括软件、音乐、电影等等。V2EX 是创意工作者的社区，我们尊重原创。</li>
+            <li>保持对陌生人的友善。用知识去帮助别人。</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

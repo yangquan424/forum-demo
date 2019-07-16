@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            max-width: 1000px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        #d1 {
+            text-align: left;
+            display: inline-block;
+        }
+
+        #d2 {
+            position: absolute;
+            right: 175px;
+            text-align: right;
+            display: inline-block;
+        }
+
+        .a1 {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        button {
+            position: relative;
+            width: auto;
+            height: auto;
+            border-radius: 12px;
+            border-width: 0;
+            background-color: #dcddc0;
+        }
+
+        #d3,#d5 {
+            width: 680px;
+            border: 0;
+            background-color: #dcddc0;
+            /*text-align: left;*/
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        #d4 {
+            width: 300px;
+            height: auto;
+            border: 0;
+            background-color: #dcddc0;
+            float: right;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .i1 {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            top: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        a:hover {
+            color: red;
+        }
+        .bu {
+            width: auto;
+            height: 30px;
+        }
+        .dd{
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="d1" style="border-bottom:10px solid white;">
+    <form action="" method="post">
+        <button type="submit">lookup</button>
+        <input type="text" name="lookup" id="lookup">
+    </form>
+</div>
+<div id="d2">
+    <a href="/index" class="a1">首页</a><a href="/register" class="a1">注册</a><a href="/login" class="a1">登录</a>
+</div>
+<br>
+<div id="d3">
+    <table>
+        <div>
+            <h3 th:text="${blog.title}"/>
+            <a th:href="@{/personal/}+${blog.user}" th:text="${blog.user}"/>
+            <span th:text="${blog.time}"/>
+        </div>
+        <hr>
+        <span th:text="${blog.text}"/>
+    </table>
+</div>
+
+<div id="d4">
+    <img th:src="${session.picture}" alt="" class="i1" style="margin-top: 5px">
+    <a th:href="@{/personal/}+${session.username}" th:text="${session.username}" style="vertical-align: top"></a>
+    <hr>
+    <div>
+        <form th:action="@{/comment/}+${blog.id}" method="post">
+            <textarea style="width:280px;height:100px" name="text" id="text"></textarea>
+
+            <button id="b1" type="submit" class="bu" th:text="添加评论"
+                    style="background-color: #c9ccdd;margin: 5px"></button>
+        </form>
+    </div>
+</div>
+
+<div style="background-color: #dcddc0;width:680px" id="d5">
+    <table>
+        <tr th:each="comment:${comment}" >
+            <td>
+                <div class="dd">
+                    <img th:src="${comment.picture}" alt="" class="i1">
+                </div>
+            </td>
+            <td>
+                <div class="dd">
+                    <span  style="font-size:12px" >
+                <a th:href="@{/personal/}+${comment.username}" th:text="${comment.username}"></a>
+                        <span th:text="${comment.tid}+楼"></span>
+                        <span th:text="${comment.time}"></span><br>
+                </span>
+                    <span th:text="${comment.content}">
+                </span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>
